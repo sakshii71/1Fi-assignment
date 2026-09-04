@@ -1,5 +1,7 @@
 # 1Fi SDE1 Assignment
 
+🚀 **Live Demo:** [https://1-fi-assignment-flame.vercel.app](https://1-fi-assignment-flame.vercel.app)
+
 A full-stack web application for displaying products with EMI plans backed by mutual funds.
 
 ## Tech Stack
