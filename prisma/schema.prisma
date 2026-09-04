@@ -1,0 +1,41 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Product {
+  id          String    @id @default(uuid())
+  slug        String    @unique
+  name        String
+  description String?
+  variants    Variant[]
+}
+
+model Variant {
+  id        String    @id @default(uuid())
+  productId String
+  product   Product   @relation(fields: [productId], references: [id])
+  name      String
+  mrp       Float
+  price     Float
+  image     String
+  colors    String    // JSON string of colors e.g. ["#ff0000", "#00ff00"]
+  emiPlans  EmiPlan[]
+}
+
+model EmiPlan {
+  id            String  @id @default(uuid())
+  variantId     String
+  variant       Variant @relation(fields: [variantId], references: [id])
+  monthlyPayment Float
+  tenureMonths  Int
+  interestRate  Float
+  cashback      Float?
+}
